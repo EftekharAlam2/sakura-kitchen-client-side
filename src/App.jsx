@@ -6,7 +6,6 @@ function App() {
 
   return (
     <div>
-      <p className="text-sky-900 text-3xl text-center">Checking</p>
       <NavBar></NavBar>
     </div>
   );
