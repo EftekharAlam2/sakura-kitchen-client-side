@@ -1,4 +1,5 @@
 import {
+  GithubAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
@@ -14,11 +15,23 @@ import app from "../../Firebase/firebase.init";
 export const Context = createContext(null);
 
 const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
+const goggleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
 
 const Providers = ({ children }) => {
   // const [user, setUser] = useState(null);
   // const [loading, setLoading] = useState(true);
+
+  const createUser = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  const updateUser = (user, name, photo) => {
+    return updateProfile(user, {
+      displayName: name,
+      photoURL: photo,
+    });
+  };
 
   const signIn = (email, password) => {
     // setLoading(true);
@@ -41,29 +54,23 @@ const Providers = ({ children }) => {
   //   return signOut(auth);
   // };
 
-  const createUser = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
-  };
-
-  const updateUser = (user, name, photo) => {
-    return updateProfile(user, {
-      displayName: name,
-      photoURL: photo,
-    });
-  };
-
   const googleSignIn = () => {
-    return signInWithPopup(auth, provider);
+    return signInWithPopup(auth, goggleProvider);
+  };
+
+  const githubSignIn = () => {
+    return signInWithPopup(auth, githubProvider);
   };
 
   const authInfo = {
+    createUser,
+    updateUser,
     signIn,
     googleSignIn,
+    githubSignIn,
     // user,
     // logOut,
     // loading,
-    createUser,
-    updateUser,
   };
 
   return (

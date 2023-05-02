@@ -29,7 +29,7 @@ const Register = () => {
           .catch((error) => {
             console.log(error.message);
           });
-        setSuccess("Login Successfully");
+        setSuccess("Register Successfully");
         console.log(registerUser);
         event.target.reset();
       })

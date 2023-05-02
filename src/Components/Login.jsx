@@ -1,29 +1,45 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "./AuthProviders/Providers";
-import App from "../App";
 
 const Login = () => {
-  const { signIn, googleSignIn } = useContext(Context);
+  const { signIn, googleSignIn, githubSignIn } = useContext(Context);
+
+  const [erroR, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const loginButtonClick = (event) => {
     event.preventDefault();
+    setError("");
+    setSuccess("");
     const email = event.target.email.value;
     const password = event.target.password.value;
 
     signIn(email, password)
       .then((result) => {
         const loggedUser = result.user;
+        setSuccess("Login Successfully");
         console.log(loggedUser);
         event.target.reset();
+      })
+      .catch(() => {
+        setError("Enter the correct Email and password!!!");
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
       })
       .catch((error) => {
         console.log(error.message);
       });
   };
 
-  const handleGoogleSignIn = () => {
-    googleSignIn()
+  const handleGithubSignIn = () => {
+    githubSignIn()
       .then((result) => {
         const user = result.user;
         console.log(user);
@@ -73,6 +89,10 @@ const Login = () => {
             Log In
           </button>
         </div>
+        <div>
+          <p className="mt-4 text-red-700">{erroR}</p>
+          <p className="mt-4 text-green-700">{success}</p>
+        </div>
         <div className="flex justify-center mt-4">
           <button
             onClick={handleGoogleSignIn}
@@ -80,10 +100,14 @@ const Login = () => {
           >
             Google
           </button>
-          <button className="bg-gray-800 text-white px-4 py-2 rounded-md shadow-md ml-2">
+          <button
+            onClick={handleGithubSignIn}
+            className="bg-gray-800 text-white px-4 py-2 rounded-md shadow-md ml-2"
+          >
             GitHub
           </button>
         </div>
+
         <div className="mt-4 text-center">
           Don't have an account?{" "}
           <p className="text-blue-500 hover:text-red-700">
