@@ -11,9 +11,11 @@ export default function ErrorPage() {
       <p>
         <i>{error.statusText || error.message}</i>
       </p>
-      <button className="btn btn-success text-white">
-        <Link to="/">Going to Home Page</Link>
-      </button>
+      <Link to="/">
+        <button className="btn btn-success text-white">
+          Going to Home Page
+        </button>
+      </Link>
       <div className=" flex justify-center">
         <div className="w-1/2 md:w-1/5 mt-10 md:mt-28">
           <img src={errorpic} alt="" />

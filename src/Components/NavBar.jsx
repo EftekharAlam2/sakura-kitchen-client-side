@@ -27,14 +27,10 @@ const NavBar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>
-                <Link to="/">Home</Link>
-              </a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a>
-                <Link to="/blogs">Blogs</Link>
-              </a>
+              <Link to="/blogs">Blogs</Link>
             </li>
           </ul>
         </div>
@@ -43,19 +39,17 @@ const NavBar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>
-              <Link to="/">Home</Link>
-            </a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a>
-              <Link to="/blogs">Blogs</Link>
-            </a>
+            <Link to="/blogs">Blogs</Link>
           </li>
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn btn-success text-white">Login</a>
+        <Link to="/login">
+          <button className="btn btn-success text-white">Log In</button>
+        </Link>
       </div>
     </div>
   );
