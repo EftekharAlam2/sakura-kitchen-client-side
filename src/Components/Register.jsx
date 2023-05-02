@@ -1,11 +1,22 @@
-import { Input } from "postcss";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Register = () => {
   return (
     <div className="max-w-md mx-auto my-4 p-6 bg-white rounded-md shadow-md">
       <form>
+        <div className="mb-4">
+          <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
+            Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            className="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 px-3 py-2"
+          />
+        </div>
+
         <div className="mb-4">
           <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
             Email
@@ -33,18 +44,30 @@ const Login = () => {
           />
         </div>
 
+        <div className="mb-4">
+          <label htmlFor="photo" className="block text-gray-700 font-bold mb-2">
+            Photo URL
+          </label>
+          <input
+            type="text"
+            id="photo"
+            name="photo"
+            className="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 px-3 py-2"
+          />
+        </div>
+
         <div>
           <button
             type="submit"
             className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
-            Log In
+            Register
           </button>
         </div>
         <div className="mt-4 text-center">
-          Don't have an account?{" "}
+          Already have an account?{" "}
           <p className="text-blue-500 hover:text-red-700">
-            <Link to="/register">Go to the register page</Link>
+            <Link to="/login">Go to the login page</Link>
           </p>{" "}
           .
         </div>
@@ -53,4 +76,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
