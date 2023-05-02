@@ -1,4 +1,3 @@
-import { Input } from "postcss";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -15,6 +14,7 @@ const Login = () => {
             id="email"
             name="email"
             className="w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 px-3 py-2"
+            required
           />
         </div>
 
@@ -22,6 +22,7 @@ const Login = () => {
           <label
             htmlFor="password"
             className="block text-gray-700 font-bold mb-2"
+            required
           >
             Password
           </label>
