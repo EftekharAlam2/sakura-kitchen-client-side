@@ -1,10 +1,41 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "./AuthProviders/Providers";
+import App from "../App";
 
 const Login = () => {
+  const { signIn, googleSignIn } = useContext(Context);
+
+  const loginButtonClick = (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    signIn(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        event.target.reset();
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   return (
     <div className="max-w-md mx-auto my-4 p-6 bg-white rounded-md shadow-md">
-      <form>
+      <form onSubmit={loginButtonClick}>
         <div className="mb-4">
           <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
             Email
@@ -40,6 +71,17 @@ const Login = () => {
             className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
             Log In
+          </button>
+        </div>
+        <div className="flex justify-center mt-4">
+          <button
+            onClick={handleGoogleSignIn}
+            className="bg-red-500 text-white px-4 py-2 rounded-md shadow-md mr-2"
+          >
+            Google
+          </button>
+          <button className="bg-gray-800 text-white px-4 py-2 rounded-md shadow-md ml-2">
+            GitHub
           </button>
         </div>
         <div className="mt-4 text-center">
