@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const AllChef = () => {
   const [chef, setChef] = useState([]);
@@ -9,8 +10,6 @@ const AllChef = () => {
       .then((data) => setChef(data))
       .catch((error) => console.log(error.message));
   }, []);
-
-  console.log(chef);
 
   return (
     <div className="mb-10">
@@ -43,9 +42,11 @@ const AllChef = () => {
                   <p className="font-bold">{chef.likes}</p>
                 </div>
               </div>
-              <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full">
-                View Profile
-              </button>
+              <Link to={`/chefdetails/${chef.id}`}>
+                <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full">
+                  View Profile
+                </button>
+              </Link>
             </div>
           </div>
         ))}
