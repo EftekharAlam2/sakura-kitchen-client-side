@@ -3,16 +3,7 @@ import { Link } from "react-router-dom";
 import { Context } from "./AuthProviders/Providers";
 
 const NavBar = () => {
-  const { user } = useContext(Context);
-  // if (user != null) {
-  //   const name2 = user.displayName;
-  //   const photo = user.photoURL;
-  //   console.log(name2, photo);
-  //   const userArray = Object.values(user);
-  //   console.log("ryt", userArray);
-  // }
-
-  // console.log(useArray);
+  const { user, logOut } = useContext(Context);
 
   return (
     <div className="navbar bg-base-100">
@@ -63,15 +54,18 @@ const NavBar = () => {
         <div className="navbar-end">
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+              <div className="w-full rounded-full relative">
+                <img src={user.photoURL} alt="User" />
+                <div className="absolute top-0 left-0 h-full w-full bg-black bg-opacity-50 flex justify-center items-center opacity-0 transition-opacity duration-300 hover:opacity-100">
+                  <span className="text-white text-xs">{user.displayName}</span>
+                </div>
               </div>
             </label>
             <ul
               tabIndex={0}
               className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
             >
-              <li>
+              <li onClick={logOut}>
                 <a>Logout</a>
               </li>
             </ul>
@@ -84,28 +78,6 @@ const NavBar = () => {
           </Link>
         </div>
       )}
-
-      {/* <div className="navbar-end">
-          <Link to="/login">
-            <button className="btn btn-success text-white">Log In</button>
-          </Link>
-        </div>
-
-      <div className="dropdown dropdown-end">
-        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-          <div className="w-10 rounded-full">
-            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-          </div>
-        </label>
-        <ul
-          tabIndex={0}
-          className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
-        >
-          <li>
-            <a>Logout</a>
-          </li>
-        </ul>
-      </div> */}
     </div>
   );
 };

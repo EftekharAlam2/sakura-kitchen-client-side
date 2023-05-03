@@ -40,7 +40,6 @@ const Providers = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log("auth sate changed", currentUser);
       setUser(currentUser);
       setLoading(false);
     });
@@ -50,9 +49,9 @@ const Providers = ({ children }) => {
     };
   }, []);
 
-  // const logOut = () => {
-  //   return signOut(auth);
-  // };
+  const logOut = () => {
+    return signOut(auth);
+  };
 
   const googleSignIn = () => {
     return signInWithPopup(auth, goggleProvider);
@@ -69,7 +68,7 @@ const Providers = ({ children }) => {
     googleSignIn,
     githubSignIn,
     user,
-    // logOut,
+    logOut,
     loading,
   };
 
