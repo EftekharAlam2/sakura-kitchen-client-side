@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Context } from "./AuthProviders/Providers";
 
 const NavBar = () => {
@@ -30,11 +30,19 @@ const NavBar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link to="/">Home</Link>
+              <NavLink
+                to="/"
+                className={({ isActive }) => ` ${isActive ? "bg-red-500" : ""}`}
+              >
+                Home
+              </NavLink>
             </li>
-            <li>
-              <Link to="/blogs">Blogs</Link>
-            </li>
+            <NavLink
+              to="/blogs"
+              className={({ isActive }) => ` ${isActive ? "bg-red-500" : ""}`}
+            >
+              Blogs
+            </NavLink>
           </ul>
         </div>
         <a className="btn btn-ghost normal-case text-xl">Sakura Kitchen</a>
@@ -42,10 +50,20 @@ const NavBar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to="/">Home</Link>
+            <NavLink
+              to="/"
+              className={({ isActive }) => ` ${isActive ? "bg-red-500" : ""}`}
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <Link to="/blogs">Blogs</Link>
+            <NavLink
+              to="/blogs"
+              className={({ isActive }) => ` ${isActive ? "bg-red-500" : ""}`}
+            >
+              Blogs
+            </NavLink>
           </li>
         </ul>
       </div>
