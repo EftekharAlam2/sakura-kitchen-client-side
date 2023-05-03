@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLoaderData, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -28,7 +28,7 @@ const ChefDetails = () => {
                 <h2 className="font-bold text-2xl mb-2">{chef.name}</h2>
                 <p className="text-gray-600 mb-2">{chef.short_bio}</p>
                 <div className="flex items-center">
-                  <p className="text-gray-600 mr-4">{chef.likes} Likes</p>
+                  <p className="text-gray-600 mr-4">Likes {chef.likes}</p>
                   <p className="text-gray-600 mr-4">
                     {chef.recipes_number} Recipes
                   </p>
