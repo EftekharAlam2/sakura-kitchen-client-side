@@ -14,7 +14,6 @@ const AllChef = () => {
       })
       .catch((error) => console.log(error.message));
   }, []);
-  console.log(chef);
 
   return (
     <div className="mb-10">
