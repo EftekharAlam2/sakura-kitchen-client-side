@@ -19,8 +19,8 @@ const goggleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
 const Providers = ({ children }) => {
-  // const [user, setUser] = useState(null);
-  // const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -34,21 +34,21 @@ const Providers = ({ children }) => {
   };
 
   const signIn = (email, password) => {
-    // setLoading(true);
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-  //     console.log("auth sate changed", currentUser);
-  //     setUser(currentUser);
-  //     setLoading(false);
-  //   });
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      console.log("auth sate changed", currentUser);
+      setUser(currentUser);
+      setLoading(false);
+    });
 
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // }, []);
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   // const logOut = () => {
   //   return signOut(auth);
@@ -68,9 +68,9 @@ const Providers = ({ children }) => {
     signIn,
     googleSignIn,
     githubSignIn,
-    // user,
+    user,
     // logOut,
-    // loading,
+    loading,
   };
 
   return (
