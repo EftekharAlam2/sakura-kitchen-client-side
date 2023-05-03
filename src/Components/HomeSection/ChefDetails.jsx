@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ChefDetails = () => {
   const chef = useLoaderData();
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  const notify = () => toast("This recipe is my favourite");
+
+  function handleClick() {
+    setIsButtonDisabled(true);
+  }
 
   return (
     <div>
@@ -35,7 +44,7 @@ const ChefDetails = () => {
                   <h3 className="text-lg font-bold mb-4">{chef.recipe_name}</h3>
                   <ul className="list-disc ml-4 mb-4">
                     {chef.ingredients.map((ingredient) => (
-                      <li>{ingredient}</li>
+                      <li key={ingredient}>{ingredient}</li>
                     ))}
                   </ul>
                   <p className="mb-4">{chef.cooking_method}</p>
@@ -47,11 +56,18 @@ const ChefDetails = () => {
                       {Math.floor(Math.random() * 500)} Reviews
                     </span>
                   </div>
-                  <button className="bg-blue-500 text-white rounded-full py-2 px-4 hover:bg-blue-700">
+                  <button
+                    onClick={() => {
+                      notify();
+                      handleClick();
+                    }}
+                    disabled={isButtonDisabled}
+                    className="bg-blue-500 text-white rounded-full py-2 px-4 hover:bg-blue-700"
+                  >
                     Add to Favorites
                   </button>
+                  <ToastContainer />
                 </div>
-                {console.log(chef)}
               </div>
             ))}
           </div>
