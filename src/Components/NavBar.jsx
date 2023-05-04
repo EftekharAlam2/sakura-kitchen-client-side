@@ -65,6 +65,14 @@ const NavBar = () => {
               Blogs
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/checking"
+              className={({ isActive }) => ` ${isActive ? "bg-red-500" : ""}`}
+            >
+              Checking
+            </NavLink>
+          </li>
         </ul>
       </div>
 
