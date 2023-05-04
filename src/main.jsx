@@ -42,7 +42,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/chef/${params.id}`),
+          fetch(
+            `https://b7a10-chef-recipe-hunter-server-side-eftekhar-ala-eftekharalam2.vercel.app/chef/${params.id}`
+          ),
       },
     ],
   },

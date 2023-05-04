@@ -7,7 +7,9 @@ const AllChef = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/chef")
+    fetch(
+      "https://b7a10-chef-recipe-hunter-server-side-eftekhar-ala-eftekharalam2.vercel.app/chef"
+    )
       .then((res) => res.json())
       .then((data) => {
         setChef(data);
