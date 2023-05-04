@@ -8,21 +8,23 @@ const ChefDetails = () => {
 
   const notify = () => toast("This recipe is my favourite");
 
-  const [disabledvalue, setDisabledvalue] = useState(null);
+  const [disabledValue, setDisabledValue] = useState([null]);
 
   const buttonClickFunctions = [
     () => {
-      setDisabledvalue(0);
+      setDisabledValue([...disabledValue, 0]);
     },
     () => {
-      setDisabledvalue(1);
+      setDisabledValue([...disabledValue, 1]);
     },
     () => {
-      setDisabledvalue(2);
+      setDisabledValue([...disabledValue, 2]);
     },
   ];
 
-  const isButtonDisabled = (value) => disabledvalue === value;
+  const isButtonDisabled = (value) => {
+    return disabledValue.includes(value);
+  };
 
   const handleClick = (value) => {
     if (!isButtonDisabled(value)) {
