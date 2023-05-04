@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ChefDetails = () => {
   const chef = useLoaderData();
+  
 
   const notify = () => toast("This recipe is my favourite");
 
