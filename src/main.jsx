@@ -11,7 +11,6 @@ import Providers from "./Components/AuthProviders/Providers";
 import ChefDetails from "./Components/HomeSection/ChefDetails";
 import PrivateRoute from "./Components/PrivateRoute";
 import Blogs from "./Components/Blogs";
-import Checking from "./Components/Checking";
 
 const router = createBrowserRouter([
   {
@@ -34,10 +33,6 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
-      },
-      {
-        path: "/checking",
-        element: <Checking></Checking>,
       },
       {
         path: "/chefdetails/:id",

@@ -5,13 +5,30 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ChefDetails = () => {
   const chef = useLoaderData();
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const notify = () => toast("This recipe is my favourite");
 
-  function handleClick() {
-    setIsButtonDisabled(true);
-  }
+  const [disabledvalue, setDisabledvalue] = useState(null);
+
+  const buttonClickFunctions = [
+    () => {
+      setDisabledvalue(0);
+    },
+    () => {
+      setDisabledvalue(1);
+    },
+    () => {
+      setDisabledvalue(2);
+    },
+  ];
+
+  const isButtonDisabled = (value) => disabledvalue === value;
+
+  const handleClick = (value) => {
+    if (!isButtonDisabled(value)) {
+      buttonClickFunctions[value]();
+    }
+  };
 
   return (
     <div>
@@ -38,7 +55,7 @@ const ChefDetails = () => {
                 </div>
               </div>
             </div>
-            {chef.recipes.map((chef) => (
+            {chef.recipes.map((chef, value) => (
               <div key={chef.recipe_name}>
                 <div className="bg-white rounded-lg shadow-lg p-6">
                   <h3 className="text-lg font-bold mb-4">{chef.recipe_name}</h3>
@@ -52,19 +69,18 @@ const ChefDetails = () => {
                     <span className="inline-block rounded-full bg-yellow-400 text-white text-xs font-bold mr-1 py-1 px-2">
                       {chef.rating}
                     </span>
-                    <span className="text-gray-600">
-                      {Math.floor(Math.random() * 500)} Reviews
-                    </span>
                   </div>
                   <button
                     onClick={() => {
                       notify();
-                      handleClick();
+                      handleClick(value);
                     }}
-                    disabled={isButtonDisabled}
+                    disabled={isButtonDisabled(value)}
                     className="bg-blue-500 text-white rounded-full py-2 px-4 hover:bg-blue-700"
                   >
-                    Add to Favorites
+                    {isButtonDisabled(value)
+                      ? "Favourite Added"
+                      : "Add to Favourite"}
                   </button>
                   <ToastContainer />
                 </div>
